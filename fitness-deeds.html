@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical interests | Charlie Zheng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/animations.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['EB Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Section Button */
+        .section-button {
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 2rem 3rem;
+            background: rgba(17, 17, 17, 0.8);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-button:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-4px);
+        }
+        
+        .section-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            transition: background 0.2s ease;
+            border-radius: 24px;
+        }
+        
+        .section-button h2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-button .arrow {
+            display: inline-block;
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+            font-size: 1.3rem;
+            color: #a855f7;
+            font-weight: 600;
+        }
+        
+        .section-button.open .arrow {
+            transform: rotate(180deg);
+        }
+        
+        .content-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+        
+        /* 1) 画廊项：不要裁剪，不要圆角 */
+        .gallery-item {
+            overflow: visible !important;
+            border-radius: 0 !important;
+        }
+
+        /* 2) 画廊图片：完整展示 + 方角 + 保持比例 */
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain !important;
+            border-radius: 0 !important;
+        }
+
+        /* 3) 全局图片兜底 */
+        img {
+            border-radius: 0 !important;
+        }
+        
+        /* 4) 减小图片 hover 放大效果 */
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02) !important;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.03) !important;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-space overflow-x-hidden">
+    
+    <!-- Back Button -->
+    <a href="index.html" class="back-button hover:bg-purple-500/30 hover:border-purple-400/40">
+        <span>←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 text-center px-4 relative">
+        <div class="glow-bg"></div>
+        <div class="container mx-auto max-w-6xl fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 gradient-text">
+                Physical interests
+            </h1>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="py-8 px-4">
+        <div class="container mx-auto max-w-6xl">
+            
+            <!-- Fitness Deeds Section -->
+            <div class="section-button" onclick="toggleSection('fitness')" onmousemove="handleSectionGlow(event)" onmouseleave="removeSectionGlow(event)">
+                <div class="section-glow"></div>
+                <div style="position: relative; z-index: 2;">
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text">
+                        Fitness deeds <span class="arrow" id="fitnessArrow">↓</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 mt-2">
+                        Fitness is a way for me to improve vitality.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="content-wrapper" id="fitnessContent">
+                <div class="container mx-auto max-w-5xl px-4">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/images/gym/51.jpeg" alt="Fitness 51">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/gym/52.jpeg" alt="Fitness 52">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Besides the Gym Section -->
+            <div class="section-button" onclick="toggleSection('gym')" onmousemove="handleSectionGlow(event)" onmouseleave="removeSectionGlow(event)">
+                <div class="section-glow"></div>
+                <div style="position: relative; z-index: 2;">
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text">
+                        Besides the Gym <span class="arrow" id="gymArrow">↓</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 mt-2">
+                        Often, sports serves as recreation and an opportunity for adjustment in my daily schedule.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="content-wrapper" id="gymContent">
+                <div class="container mx-auto max-w-5xl px-4">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/images/sports/61.jpeg" alt="Sports 61">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/sports/62.jpeg" alt="Sports 62">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/sports/63.jpeg" alt="Sports 63">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">huNter</h3>
+                    <p class="text-gray-400 text-sm">Charlie Zheng</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="flex flex-col gap-2 text-sm text-gray-400">
+                        <a href="mailto:hunter.zheng08@gmail.com" class="hover:text-neon-purple transition-colors">
+                            hunter.zheng08@gmail.com
+                        </a>
+                        <a href="tel:+8617316400635" class="hover:text-neon-blue transition-colors">
+                            +86 17316400635
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-500">© 2025 Charlie Zheng</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="style/animations.js"></script>
+    <script>
+        function toggleSection(section) {
+            const content = document.getElementById(section + 'Content');
+            const arrow = document.getElementById(section + 'Arrow');
+            const button = arrow.closest('.section-button');
+
+            if (content.style.maxHeight) {
+                // 关闭
+                content.style.maxHeight = null;
+                button.classList.remove('open');
+            } else {
+                // 打开：用内容实际高度撑开，保证不裁剪
+                content.style.maxHeight = content.scrollHeight + 'px';
+                button.classList.add('open');
+            }
+        }
+
+        // 窗口尺寸变更时，动态更新已打开面板高度，避免再次裁剪
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.content-wrapper').forEach(c => {
+                if (c.style.maxHeight) c.style.maxHeight = c.scrollHeight + 'px';
+            });
+        });
+        
+        // 光随鼠标移动效果
+        function handleSectionGlow(e) {
+            const button = e.currentTarget;
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const glowLayer = button.querySelector('.section-glow');
+            
+            glowLayer.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(168,85,247,0.25), transparent 60%)`;
+        }
+        
+        function removeSectionGlow(e) {
+            const glowLayer = e.currentTarget.querySelector('.section-glow');
+            glowLayer.style.background = 'transparent';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working in the kitchen | Charlie Zheng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/animations.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['EB Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Creative Polaroid Layout */
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 4rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .polaroid {
+            background: white;
+            padding: 1rem;
+            padding-bottom: 3.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .polaroid:nth-child(1) { transform: rotate(2deg); }
+        .polaroid:nth-child(2) { transform: rotate(-3deg); }
+        .polaroid:nth-child(3) { transform: rotate(1deg); }
+        .polaroid:nth-child(4) { transform: rotate(-2deg); }
+        .polaroid:nth-child(5) { transform: rotate(3deg); }
+        .polaroid:nth-child(6) { transform: rotate(-1deg); }
+        .polaroid:nth-child(7) { transform: rotate(2deg); }
+        .polaroid:nth-child(8) { transform: rotate(-2deg); }
+        .polaroid:nth-child(9) { transform: rotate(1deg); }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-10px);
+            z-index: 10;
+        }
+        
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 0;
+        }
+        
+        .polaroid-caption {
+            position: absolute;
+            bottom: 0.8rem;
+            left: 1rem;
+            right: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+        }
+        
+        /* Override any global styles */
+        img {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+<body class="font-space overflow-x-hidden" style="background-color: #f5f5dc; color: #333;">
+    
+    <!-- Back Button -->
+    <a href="index.html" class="back-button" style="background: rgba(175, 99, 246, 0.15); border-color: rgba(168, 85, 247, 0.3); color: #333;" onmouseover="this.style.background='rgba(168, 85, 247, 0.25)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.15)'">
+        <span>←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <!-- Page Header -->
+    <section class="pt-24 pb-8 text-center px-4 relative">
+        <div class="container mx-auto max-w-6xl fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 gradient-text">
+                Working in the kitchen
+            </h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-0" style="color: #666;">
+                As for food, I hope my skills to be diverse.
+            </p>
+        </div>
+    </section>
+
+    <!-- Creative Polaroid Gallery -->
+    <section class="py-8 px-4">
+        <div class="container mx-auto max-w-7xl">
+            <div class="creative-grid">
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/70.jpeg')">
+                    <img src="assets/images/cuisine/70.jpeg" alt="Cuisine 70">
+                    <div class="polaroid-caption">Dish #1</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/71.jpeg')">
+                    <img src="assets/images/cuisine/71.jpeg" alt="Cuisine 71">
+                    <div class="polaroid-caption">Dish #2</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/72.jpeg')">
+                    <img src="assets/images/cuisine/72.jpeg" alt="Cuisine 72">
+                    <div class="polaroid-caption">Dish #3</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/73.jpeg')">
+                    <img src="assets/images/cuisine/73.jpeg" alt="Cuisine 73">
+                    <div class="polaroid-caption">Dish #4</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/74.jpeg')">
+                    <img src="assets/images/cuisine/74.jpeg" alt="Cuisine 74">
+                    <div class="polaroid-caption">Dish #5</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/75.jpeg')">
+                    <img src="assets/images/cuisine/75.jpeg" alt="Cuisine 75">
+                    <div class="polaroid-caption">Dish #6</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/76.jpeg')">
+                    <img src="assets/images/cuisine/76.jpeg" alt="Cuisine 76">
+                    <div class="polaroid-caption">Dish #7</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/77.jpeg')">
+                    <img src="assets/images/cuisine/77.jpeg" alt="Cuisine 77">
+                    <div class="polaroid-caption">Dish #8</div>
+                </div>
+                <div class="polaroid" onclick="openLightbox('assets/images/cuisine/78.jpeg')">
+                    <img src="assets/images/cuisine/78.jpeg" alt="Cuisine 78">
+                    <div class="polaroid-caption">Dish #9</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="Cuisine" id="lightboxImg">
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4" style="border-top: 2px solid rgba(168, 85, 247, 0.2);">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">huNter</h3>
+                    <p class="text-sm" style="color: #888;">Charlie Zheng</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="flex flex-col gap-2 text-sm" style="color: #888;">
+                        <a href="mailto:hunter.zheng08@gmail.com" class="transition-colors" style="color: #888;" onmouseover="this.style.color='#a855f7'" onmouseout="this.style.color='#888'">
+                            hunter.zheng08@gmail.com
+                        </a>
+                        <a href="tel:+8617316400635" class="transition-colors" style="color: #888;" onmouseover="this.style.color='#a855f7'" onmouseout="this.style.color='#888'">
+                            +86 17316400635
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm" style="color: #999;">© 2025 Charlie Zheng</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="style/animations.js"></script>
+    <script>
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+        }
+    </script>
+</body>
+</html>

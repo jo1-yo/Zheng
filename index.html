@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlie Zheng | huNter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/animations.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['EB Garamond', 'serif'],
+                    },
+                    colors: {
+                        'neon-purple': '#a855f7',
+                        'neon-blue': '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes carDrive {
+            0% {
+                transform: translateX(0);
+            }
+            30% {
+                transform: translateX(-80px);
+            }
+            40% {
+                transform: translateX(-80px);
+            }
+            100% {
+                transform: translateX(-500px);
+            }
+        }
+        
+        .car-emoji.driving {
+            animation: carDrive 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+        
+        @keyframes starSpinSmooth {
+            0% {
+                transform: rotate(var(--start-rotation, 0deg)) scale(1);
+            }
+            40% {
+                transform: rotate(calc(var(--start-rotation, 0deg) + 180deg)) scale(1.2);
+            }
+            100% {
+                transform: rotate(calc(var(--start-rotation, 0deg) + 180deg)) scale(1);
+            }
+        }
+        
+        .star-emoji.spinning {
+            animation: starSpinSmooth 1.2s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-space overflow-x-hidden overflow-y-visible">
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-visible">
+        <div class="glow-bg"></div>
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 fade-in overflow-visible">
+                <!-- Portrait -->
+                <div class="relative -ml-8">
+                    <div class="w-96 h-96 md:w-[32rem] md:h-[32rem] overflow-hidden shadow-2xl hover-scale">
+                        <img src="p0.JPEG" alt="Charlie Zheng" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400/9333ea/ffffff?text=Charlie+Zheng'">
+                    </div>
+                </div>
+                
+                <!-- Hero Text -->
+                <div class="text-center md:text-left max-w-xl">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text">
+                        Charlie Zheng
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-6 text-gray-300">
+                        SSBS '26 | ENFP
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed mb-8">
+                        Hi! I'm Charlie, a twelve-grader at Shanghai Starriver Bilingual School, but I prefer my alias as <span class="text-neon-blue font-medium">huNter</span>. The original purpose of this website is to demonstrate about who I really am, though my aspects in my daily life, which academics usually cannot reach.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="mailto:hunter.zheng08@gmail.com" class="text-sm text-gray-400 hover:text-neon-purple transition-colors">
+                            📧 hunter.zheng08@gmail.com
+                        </a>
+                        <a href="tel:+8617316400635" class="text-sm text-gray-400 hover:text-neon-blue transition-colors">
+                            📱 +86 17316400635
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <div class="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identity Buttons / Navigation Cards -->
+    <section class="py-20 px-4 relative">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text fade-in-up">
+                Explore My Identities
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Card 1: Car Fashions -->
+                <a href="car-fashions.html" 
+                   class="relative group overflow-hidden rounded-3xl bg-neutral-900 border border-gray-800 transition-all duration-500 hover:border-purple-500/50 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+                   onmousemove="handleGlow(event, 'purple')" onmouseleave="removeGlow(event, 'purple')">
+                  <div class="card-glow-layer absolute inset-0 pointer-events-none rounded-3xl transition-all duration-200" 
+                       style="background: transparent;"></div>
+                  <div class="relative z-10 flex flex-col items-center justify-center text-center px-8 py-8">
+                    <div class="car-emoji text-5xl mb-4" style="filter: drop-shadow(0 0 12px rgba(168,85,247,0.6));">🏎️</div>
+                    <h3 class="text-2xl font-bold mb-3 transition-all duration-300 group-hover:text-purple-400">A New lens through Photography</h3>
+                  </div>
+                </a>
+                
+                <!-- Card 2: Childhood Experiences -->
+                <a href="childhood-experiences.html" 
+                   class="relative group overflow-hidden rounded-3xl bg-neutral-900 border border-gray-800 transition-all duration-500 hover:border-blue-500/50 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+                   onmousemove="handleGlow(event, 'blue')" onmouseleave="removeGlow(event, 'blue')">
+                  <div class="card-glow-layer absolute inset-0 pointer-events-none rounded-3xl transition-all duration-200" 
+                       style="background: transparent;"></div>
+                  <div class="relative z-10 flex flex-col items-center justify-center text-center px-8 py-8">
+                    <div class="star-emoji text-5xl mb-4" style="filter: drop-shadow(0 0 12px rgba(59,130,246,0.6));">🌟</div>
+                    <h3 class="text-2xl font-bold mb-3 transition-all duration-300 group-hover:text-blue-400">Life in other words</h3>
+                  </div>
+                </a>
+                
+                <!-- Card 3: Fitness Deeds -->
+                <a href="fitness-deeds.html" 
+                   class="relative group overflow-hidden rounded-3xl bg-neutral-900 border border-gray-800 transition-all duration-500 hover:border-purple-500/50 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+                   onmousemove="handleGlow(event, 'purple')" onmouseleave="removeGlow(event, 'purple')">
+                  <div class="card-glow-layer absolute inset-0 pointer-events-none rounded-3xl transition-all duration-200" 
+                       style="background: transparent;"></div>
+                  <div class="relative z-10 flex flex-col items-center justify-center text-center px-8 py-8">
+                    <div class="text-5xl mb-4 transition-all duration-500 group-hover:scale-[1.4]" style="filter: drop-shadow(0 0 12px rgba(168,85,247,0.6));">🏋️‍♂️</div>
+                    <h3 class="text-2xl font-bold mb-3 transition-all duration-300 group-hover:text-purple-400">Physical interests</h3>
+                  </div>
+                </a>
+                
+                <!-- Card 4: Exotic Cuisines -->
+                <a href="exotic-cuisines.html" 
+                   class="relative group overflow-hidden rounded-3xl bg-neutral-900 border border-gray-800 transition-all duration-500 hover:border-blue-500/50 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+                   onmousemove="handleGlow(event, 'blue')" onmouseleave="removeGlow(event, 'blue')">
+                  <div class="card-glow-layer absolute inset-0 pointer-events-none rounded-3xl transition-all duration-200" 
+                       style="background: transparent;"></div>
+                  <div class="relative z-10 flex flex-col items-center justify-center text-center px-8 py-8">
+                    <div class="text-5xl mb-4 transition-all duration-500 group-hover:scale-[1.4]" style="filter: drop-shadow(0 0 12px rgba(59,130,246,0.6));">🍲</div>
+                    <h3 class="text-2xl font-bold mb-3 transition-all duration-300 group-hover:text-blue-400">Working in the kitchen</h3>
+                  </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">huNter</h3>
+                    <p class="text-gray-400 text-sm">Charlie Zheng</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="flex flex-col gap-2 text-sm text-gray-400">
+                        <a href="mailto:hunter.zheng08@gmail.com" class="hover:text-neon-purple transition-colors">
+                            hunter.zheng08@gmail.com
+                        </a>
+                        <a href="tel:+8617316400635" class="hover:text-neon-blue transition-colors">
+                            +86 17316400635
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-500">© 2025 Charlie Zheng</p>
+                    <p class="text-xs text-gray-600 mt-1">All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="style/animations.js"></script>
+    <script>
+        function handleGlow(e, color) {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const glowLayer = card.querySelector('.card-glow-layer');
+            
+            const colors = {
+                'purple': 'rgba(168,85,247,0.25)',
+                'blue': 'rgba(59,130,246,0.25)'
+            };
+            
+            glowLayer.style.background = `radial-gradient(circle at ${x}px ${y}px, ${colors[color]}, transparent 60%)`;
+        }
+        
+        function removeGlow(e, color) {
+            const glowLayer = e.currentTarget.querySelector('.card-glow-layer');
+            const colors = {
+                'purple': 'rgba(168,85,247,0.1)',
+                'blue': 'rgba(59,130,246,0.1)'
+            };
+            glowLayer.style.background = `radial-gradient(circle at 50% 50%, ${colors[color]}, transparent 60%)`;
+        }
+        
+        // 车emoji特殊动画：先慢跑，停顿，再加速
+        const carCard = document.querySelector('a[href="car-fashions.html"]');
+        const carEmoji = carCard.querySelector('.car-emoji');
+        
+        carCard.addEventListener('mouseenter', () => {
+            carEmoji.classList.remove('driving');
+            void carEmoji.offsetWidth; // 触发重排，确保动画可以重新开始
+            carEmoji.classList.add('driving');
+        });
+        
+        carCard.addEventListener('mouseleave', () => {
+            carEmoji.classList.remove('driving');
+            carEmoji.style.transform = 'translateX(0)';
+        });
+        
+        // 星星emoji特殊动画：丝滑累积旋转180度
+        const starCard = document.querySelector('a[href="childhood-experiences.html"]');
+        const starEmoji = starCard.querySelector('.star-emoji');
+        let starRotation = 0;
+        let starAnimating = false;
+        
+        starCard.addEventListener('mouseenter', () => {
+            if (starAnimating) return;
+            starAnimating = true;
+            
+            // 设置起始旋转角度
+            starEmoji.style.setProperty('--start-rotation', `${starRotation}deg`);
+            
+            // 移除并重新添加动画类以触发动画
+            starEmoji.classList.remove('spinning');
+            void starEmoji.offsetWidth;
+            starEmoji.classList.add('spinning');
+            
+            // 更新累积旋转角度
+            starRotation += 180;
+            
+            // 动画结束后更新状态
+            setTimeout(() => {
+                starEmoji.style.transform = `rotate(${starRotation}deg) scale(1)`;
+                starEmoji.classList.remove('spinning');
+                starAnimating = false;
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
+
+

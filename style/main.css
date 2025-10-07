@@ -1,0 +1,322 @@
+/* Main Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'EB Garamond', serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Background Glow Effect */
+.glow-bg {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Identity Cards */
+.identity-card {
+    position: relative;
+    display: block;
+    background: rgba(17, 17, 17, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 48px 36px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.identity-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-glow-purple {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+}
+
+.card-glow-blue {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+}
+
+.identity-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* About Card */
+.about-card {
+    background: rgba(17, 17, 17, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 48px;
+    backdrop-filter: blur(10px);
+}
+
+/* Border Gradient Animation */
+.border-gradient-animation {
+    border: 4px solid transparent;
+    background: linear-gradient(#000, #000) padding-box,
+                linear-gradient(135deg, #a855f7, #3b82f6, #a855f7) border-box;
+    animation: gradientRotate 3s linear infinite;
+}
+
+@keyframes gradientRotate {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Gallery Styles */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+    margin: 32px 0;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 600px;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-nav:hover {
+    background: rgba(168, 85, 247, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 20px;
+}
+
+.carousel-nav.next {
+    right: 20px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: #a855f7;
+    width: 32px;
+    border-radius: 6px;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.section-description {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    z-index: 100;
+    background: rgba(17, 17, 17, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(168, 85, 247, 0.8);
+    transform: translateX(-4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-description {
+        font-size: 1rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .carousel-slide {
+        height: 400px;
+    }
+    
+    .back-button {
+        top: 16px;
+        left: 16px;
+        padding: 8px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Hidden */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* For IE and Edge */
+* {
+    -ms-overflow-style: none;
+}
+
+
+

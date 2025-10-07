@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Fashions | Charlie Zheng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/animations.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['EB Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .infinite-scroll-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        .infinite-scroll-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 40s linear infinite;
+            will-change: transform;
+        }
+        
+        .infinite-scroll-track.paused {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .gallery-item {
+            flex-shrink: 0;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-space overflow-x-hidden">
+    
+    <!-- Back Button -->
+    <a href="index.html" class="back-button hover:bg-purple-500/30 hover:border-purple-400/40">
+        <span>←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <!-- Page Header -->
+    <section class="min-h-screen flex items-center justify-center px-4 py-20 relative">
+        <div class="glow-bg"></div>
+        <div class="container mx-auto max-w-6xl text-center fade-in">
+            <div class="text-6xl mb-4 floating">🏎️</div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 gradient-text">
+                Car Fashions
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-0">
+                Of all times, I am obsessed with automobiles, which I think is the essence of technology and aesthetics.
+            </p>
+        </div>
+    </section>
+
+    <!-- Car Fashions Gallery -->
+    <section class="-mt-20 pb-6">
+        <div class="infinite-scroll-container">
+            <div class="infinite-scroll-track" id="carScrollTrack">
+                <!-- 第一组图片 10-19 -->
+                <div class="gallery-item" data-img="assets/images/car_fashions/10.jpeg">
+                    <img src="assets/images/car_fashions/10.jpeg" alt="Car Fashion 10">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/11.jpeg">
+                    <img src="assets/images/car_fashions/11.jpeg" alt="Car Fashion 11">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/12.jpeg">
+                    <img src="assets/images/car_fashions/12.jpeg" alt="Car Fashion 12">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/13.jpeg">
+                    <img src="assets/images/car_fashions/13.jpeg" alt="Car Fashion 13">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/14.jpeg">
+                    <img src="assets/images/car_fashions/14.jpeg" alt="Car Fashion 14">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/15.jpeg">
+                    <img src="assets/images/car_fashions/15.jpeg" alt="Car Fashion 15">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/16.jpeg">
+                    <img src="assets/images/car_fashions/16.jpeg" alt="Car Fashion 16">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/17.jpeg">
+                    <img src="assets/images/car_fashions/17.jpeg" alt="Car Fashion 17">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/18.jpeg">
+                    <img src="assets/images/car_fashions/18.jpeg" alt="Car Fashion 18">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/19.jpeg">
+                    <img src="assets/images/car_fashions/19.jpeg" alt="Car Fashion 19">
+                </div>
+                <!-- 第二组图片 10-19（用于无限循环） -->
+                <div class="gallery-item" data-img="assets/images/car_fashions/10.jpeg">
+                    <img src="assets/images/car_fashions/10.jpeg" alt="Car Fashion 10">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/11.jpeg">
+                    <img src="assets/images/car_fashions/11.jpeg" alt="Car Fashion 11">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/12.jpeg">
+                    <img src="assets/images/car_fashions/12.jpeg" alt="Car Fashion 12">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/13.jpeg">
+                    <img src="assets/images/car_fashions/13.jpeg" alt="Car Fashion 13">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/14.jpeg">
+                    <img src="assets/images/car_fashions/14.jpeg" alt="Car Fashion 14">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/15.jpeg">
+                    <img src="assets/images/car_fashions/15.jpeg" alt="Car Fashion 15">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/16.jpeg">
+                    <img src="assets/images/car_fashions/16.jpeg" alt="Car Fashion 16">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/17.jpeg">
+                    <img src="assets/images/car_fashions/17.jpeg" alt="Car Fashion 17">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/18.jpeg">
+                    <img src="assets/images/car_fashions/18.jpeg" alt="Car Fashion 18">
+                </div>
+                <div class="gallery-item" data-img="assets/images/car_fashions/19.jpeg">
+                    <img src="assets/images/car_fashions/19.jpeg" alt="Car Fashion 19">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nature and beyond Section -->
+    <section class="pt-80 pb-29 px-4">
+        <div class="container mx-auto max-w-6xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-3 gradient-text">
+                Nature and beyond
+            </h2>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                Exploring the beauty of the natural world
+            </p>
+        </div>
+    </section>
+
+    <!-- Nature Gallery -->
+    <section class="pt-0 pb-16">
+        <div class="infinite-scroll-container">
+            <div class="infinite-scroll-track" id="natureScrollTrack">
+                <!-- 第一组图片 20-28 -->
+                <div class="gallery-item" data-img="assets/images/nature/20.jpeg">
+                    <img src="assets/images/nature/20.jpeg" alt="Nature 20">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/21.jpeg">
+                    <img src="assets/images/nature/21.jpeg" alt="Nature 21">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/22.jpeg">
+                    <img src="assets/images/nature/22.jpeg" alt="Nature 22">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/23.jpeg">
+                    <img src="assets/images/nature/23.jpeg" alt="Nature 23">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/24.jpeg">
+                    <img src="assets/images/nature/24.jpeg" alt="Nature 24">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/25.jpeg">
+                    <img src="assets/images/nature/25.jpeg" alt="Nature 25">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/26.jpeg">
+                    <img src="assets/images/nature/26.jpeg" alt="Nature 26">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/27.jpeg">
+                    <img src="assets/images/nature/27.jpeg" alt="Nature 27">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/28.jpeg">
+                    <img src="assets/images/nature/28.jpeg" alt="Nature 28">
+                </div>
+                <!-- 第二组图片 20-28（用于无限循环） -->
+                <div class="gallery-item" data-img="assets/images/nature/20.jpeg">
+                    <img src="assets/images/nature/20.jpeg" alt="Nature 20">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/21.jpeg">
+                    <img src="assets/images/nature/21.jpeg" alt="Nature 21">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/22.jpeg">
+                    <img src="assets/images/nature/22.jpeg" alt="Nature 22">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/23.jpeg">
+                    <img src="assets/images/nature/23.jpeg" alt="Nature 23">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/24.jpeg">
+                    <img src="assets/images/nature/24.jpeg" alt="Nature 24">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/25.jpeg">
+                    <img src="assets/images/nature/25.jpeg" alt="Nature 25">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/26.jpeg">
+                    <img src="assets/images/nature/26.jpeg" alt="Nature 26">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/27.jpeg">
+                    <img src="assets/images/nature/27.jpeg" alt="Nature 27">
+                </div>
+                <div class="gallery-item" data-img="assets/images/nature/28.jpeg">
+                    <img src="assets/images/nature/28.jpeg" alt="Nature 28">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Gallery Image" id="lightboxImg">
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">huNter</h3>
+                    <p class="text-gray-400 text-sm">Charlie Zheng</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="flex flex-col gap-2 text-sm text-gray-400">
+                        <a href="mailto:hunter.zheng08@gmail.com" class="hover:text-neon-purple transition-colors">
+                            hunter.zheng08@gmail.com
+                        </a>
+                        <a href="tel:+8617316400635" class="hover:text-neon-blue transition-colors">
+                            +86 17316400635
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-500">© 2025 Charlie Zheng</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="style/animations.js"></script>
+    <script>
+        // 无限滚动画廊控制
+        const carScrollTrack = document.getElementById('carScrollTrack');
+        const natureScrollTrack = document.getElementById('natureScrollTrack');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        
+        // 鼠标悬停暂停滚动
+        galleryItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const track = item.closest('.infinite-scroll-track');
+                track.classList.add('paused');
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const track = item.closest('.infinite-scroll-track');
+                track.classList.remove('paused');
+            });
+            
+            // 点击放大图片
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-img');
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+            });
+        });
+        
+        // 点击 lightbox 关闭
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
+
